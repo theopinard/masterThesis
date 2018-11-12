@@ -2,11 +2,10 @@ close all
 clear all
 clc
 
-l = [1,2,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
-%l = [12]
+%l = [1,2,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+l = [12]
 path_output = '../output/plot/img'
 path = '../output/intermediary_result/chess_point_img'
-
 for ii = 1:size(l,2)
 points = load([path num2str(ii, '%02d') '.mat'])
 center_in = points.centroids; % name to be changed
@@ -31,7 +30,7 @@ for k=[1 length(points)];
     text(points_in(k,1), points_in(k,2),['  ' num2str(k)]);
 end
 %title('centroids2')
-
+axis([1600 3600 800 3000]);
 set(gca,'YDir','reverse')
 xlabel('\xi [px]');
 ylabel('\eta [px]');
@@ -45,13 +44,13 @@ for k=[1 length(points)];
     text(points(k,1), points(k,2),['  ' num2str(k)]);
 end
 %title('points')
-
+axis([1600 3600 800 3000]);
 set(gca,'YDir','reverse')
 xlabel('\xi [px]');
 ylabel('\eta [px]');
-path_to_fig = [path_output int2str(ii) 'orderingPoints_sort1']
-saveas(gcf, path_to_fig, 'svg');
-saveas(gcf, path_to_fig, 'jpeg');
+path_to_fig = [path_output int2str(ii) 'orderingPoints_original']
+saveas(gcf, path_to_fig, 'svg')
+saveas(gcf, path_to_fig, 'jpeg')
 
 figure 
 hold on
@@ -60,13 +59,11 @@ for k=[1 length(points1)];
     text(points1(k,1), points1(k,2),['  ' num2str(k)]);
 end
 %title('points1')
-
+axis([1600 3600 800 3000]);
 set(gca,'YDir','reverse')
 xlabel('\xi [px]');
 ylabel('\eta [px]');
-path_to_fig = [path_output int2str(ii) 'orderingPoints_sort2'];
-saveas(gcf, path_to_fig, 'svg');
-saveas(gcf, path_to_fig, 'jpeg');
+plot2svg([path_output int2str(ii) 'orderingPoints_sort2.svg']);
 
 figure 
 hold on
@@ -75,42 +72,37 @@ for k=[1 length(points2)];
     text(points2(k,1), points2(k,2),['  ' num2str(k)]);
 end
 %title('points2')
-
+axis([1600 3600 800 3000]);
 set(gca,'YDir','reverse')
 xlabel('\xi [px]');
 ylabel('\eta [px]');
-path_to_fig = [path_output int2str(ii) 'orderingPoints_sort3'];
-saveas(gcf, path_to_fig, 'svg');
-saveas(gcf, path_to_fig, 'jpeg');
+plot2svg([path_output int2str(ii) 'orderingPoints_sort3.svg']);
 
 figure
 hold on
-plot (points3(:,1), points3(:,2), '-r*');
+plot (points3(:,1), points3(:,2), '--b*');
 for k=[1 length(points3)];
     text(points3(k,1), points3(k,2),['  ' num2str(k)]);
 end
 %title('points3')
-
+axis([1600 3600 800 3000]);
 set(gca,'YDir','reverse')
 xlabel('\xi [px]');
 ylabel('\eta [px]');
-path_to_fig = [path_output int2str(ii) 'orderingPoints_sort4'];
-saveas(gcf, path_to_fig, 'svg');
-saveas(gcf, path_to_fig, 'jpeg');
+plot2svg([path_output int2str(ii) 'orderingPoints_sort4.svg']);
 
 figure
 hold on
-plot (points4(:,1), points4(:,2), '--r*');
+plot (points4(:,1), points4(:,2), '--b*');
 for k=[1 length(points4)];
     text(points4(k,1), points4(k,2),['  ' num2str(k)]);
 end
-
+%title('points4')
+axis([1600 3600 800 3000]);
 set(gca,'YDir','reverse')
 xlabel('\xi [px]');
 ylabel('\eta [px]');
-path_to_fig = [path_output int2str(ii) 'orderingPoints_sort5'];
-saveas(gcf, path_to_fig, 'svg');
-saveas(gcf, path_to_fig, 'jpeg');
+plot2svg([path_output int2str(ii) 'orderingPoints_sort5.svg']);
 
 figure
 plot(angle4, '-b*')
@@ -124,6 +116,7 @@ for i = 1:N
     for k=[1 length(u)];
         text(u(k,1), u(k,2),['  ' num2str(k)]);
     end
+
 end
 hold on 
 for i = 1:N 
@@ -133,18 +126,14 @@ for i = 1:N
         text(u(k,1), u(k,2),['  ' num2str(k)]);
     end
 end
-
+axis([1600 3600 800 3000]);
 set(gca,'YDir','reverse')
 xlabel('\xi [px]');
 ylabel('\eta [px]');
-path_to_fig = [path_output int2str(ii) 'orderingPoints_sort_final'];
-saveas(gcf, path_to_fig, 'svg');
-saveas(gcf, path_to_fig, 'jpeg');
-
+plot2svg([path_output int2str(ii) 'orderingPoints_sort_final.svg']);
 
 points_f{ii} = P_f;
 
-close all
 end
 
-save('../output/intermediary_result/agg_ordered_points.mat', 'points_f')
+%save('points_f.mat','points_f')
