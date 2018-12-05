@@ -34,7 +34,7 @@ for i=1:length(files)
     
     x = y(1,1); span = 80; count = 1;
     displacement = [];
-    while count <= 55
+    while count <= 53
         plot([x x], y(x,2) + span * [-1 1], 'w--');
         text(x , y(x,2) + span, [' ' num2str(count)], 'Color', 'w');
         
@@ -51,7 +51,6 @@ for i=1:length(files)
    displacement(:,1) = displacement(:,1) - displacement(1,1);
    displacement(:,2) = displacement(:,2) - displacement(1,2);
    displacement = displacement * scale;
-   
    
    results(i).case = files(i).name;
    results(i).displacement = displacement;

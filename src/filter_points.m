@@ -8,7 +8,7 @@ path_output = '../output/plot/img'
 path = '../output/intermediary_result/chess_point_img'
 
 for ii = 1:size(l,2)
-points = load([path num2str(ii, '%02d') '.mat'])
+points = load([path num2str(l(ii), '%02d') '.mat'])
 center_in = points.centroids; % name to be changed
 points_in = points.centroids2; % to be changed
 
