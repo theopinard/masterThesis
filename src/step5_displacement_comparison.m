@@ -243,3 +243,6 @@ for i = [1 3 4 5 6 7]
     
     k = k+1;
 end
+
+close all
+
