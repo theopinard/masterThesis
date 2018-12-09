@@ -8,7 +8,9 @@ grid
 xlabel('y')
 ylabel('z')
 
-load('../output/back_camera_control_point.mat')
+load('../output/step3/back_camera_control_point.mat')
+path_output = '../output/step4/'
+mkdir(path_output)
 k = 1
 %for i = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 18 19 20 21]
 for i = [2 3 6 7 8 9 10 11 12 13 14 15 16 16 17 18]
@@ -36,6 +38,6 @@ set(gcf, 'Position', [0, 0, 5000, 1000])
 
 legend('estimated displacement  from the camera 2','filtered displacement using polinomial fit','location','NorthWest')
 
-saveas(gcf, '../output/camera_control/displacement_sum_up', 'jpeg')
+saveas(gcf, [path_output 'displacement_sum_up'], 'jpeg')
 
-save('../output/back_camera_filtered_control_point.mat', 'points_camera2')
+save([path_output 'back_camera_filtered_control_point.mat'], 'points_camera2')

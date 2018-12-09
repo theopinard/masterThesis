@@ -3,7 +3,10 @@ close all
 clc
 
 path_data = '../data/camera_root/'
-path_output = '../output/'
+path_output = '../output/step1/'
+
+mkdir(path_output)
+
 listing = dir(fullfile( path_data, '*.tiff'));
 
 list = {listing.name}
@@ -50,23 +53,23 @@ centroids2 = centroids2(2:end,:);
 
 
 % save centroids
-centroid_path = [path_output 'intermediary_result/chess_point_img' img_n '.mat'];
+centroid_path = [path_output 'chess_point_img' img_n '.mat'];
 
 save(centroid_path, 'centroids','centroids2')
 
 %%
-path_image = [path_output 'image/img' img_n]
+path_image = [path_output 'img' img_n]
 for i=1:7
     imshow(eval(['I'  num2str(i)]));
-    imwrite(eval(['I'  num2str(i)]),[path_image 'step' num2str(i) '.jpg'], 'jpg');
-    print(gcf,'-depsc2 ', [path_image 'step' num2str(i) '.eps'])
+    imwrite(eval(['I'  num2str(i)]),[path_image 'substep' num2str(i) '.jpg'], 'jpg');
+    print(gcf,'-depsc2 ', [path_image 'substep' num2str(i) '.eps'])
 end
 
 imshow(I1)
 hold on
 plot(centroids2(:,1), centroids2(:,2), 'or', 'Markersize', 10)
-imwrite(eval(['I'  num2str(i)]),[path_image 'step' num2str(i+1) '.jpg'], 'jpg')
-print(gcf,'-depsc2 ', [path_image 'step' num2str(i+1) '.eps'])
+imwrite(eval(['I'  num2str(i)]),[path_image 'substep' num2str(i+1) '.jpg'], 'jpg')
+print(gcf,'-depsc2 ', [path_image 'substep' num2str(i+1) '.eps'])
 close all
 
 end

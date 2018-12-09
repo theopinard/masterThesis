@@ -2,9 +2,10 @@ clear all
 close all
 clc
 
-load('../output/intermediary_result/agg_ordered_points.mat');
-load('../output/back_camera_filtered_control_point.mat');
-path = '../output/comparison/'
+load('../output/step2/agg_ordered_points.mat');
+load('../output/step4/back_camera_filtered_control_point.mat');
+path_output = '../output/step5/'
+mkdir(path_output)
 R1 = [291,291,300,300,294,294,285,285,242,242,230,230,215,215,172,172];
 R2 = [272,272,282,282,274,274,265,265,221,221,207,207,195,195,150,150];
 
@@ -96,12 +97,12 @@ e1 = sum(M1(:,3))
 e2 = sum(M1(:,6))
 rowLabels = {'case 1', 'case 2','case 3', 'case 4','case 5', 'case 6'};
 columnLabels = {'displacement measured', 'displacement estimated [mm]', 'absolute error [mm]'};
-matrix2latex(M1(:,1:3), [path 'out1.txt'], 'rowLabels', rowLabels, 'columnLabels', columnLabels, 'alignment', 'c', 'format', '%-6.2f');
-matrix2latex(M1(:,4:6), [path 'out2.txt'], 'rowLabels', rowLabels, 'columnLabels', columnLabels, 'alignment', 'c', 'format', '%-6.2f');
+matrix2latex(M1(:,1:3), [path_output 'out1.txt'], 'rowLabels', rowLabels, 'columnLabels', columnLabels, 'alignment', 'c', 'format', '%-6.2f');
+matrix2latex(M1(:,4:6), [path_output 'out2.txt'], 'rowLabels', rowLabels, 'columnLabels', columnLabels, 'alignment', 'c', 'format', '%-6.2f');
 
 columnLabels = {'displacement measured at corner 1', 'displacement estimated at corner 1 [mm]', 'absolute error at corner 1 [mm]'...
     'displacement measured at corner 2', 'displacement estimated at corner 2 [mm]', 'absolute error at corner 2 [mm]'};
-matrix2latex(M1, [path 'out.txt'], 'rowLabels', rowLabels, 'columnLabels', columnLabels, 'alignment', 'c', 'format', '%-6.2f','size','tiny');
+matrix2latex(M1, [path_output 'out.txt'], 'rowLabels', rowLabels, 'columnLabels', columnLabels, 'alignment', 'c', 'format', '%-6.2f','size','tiny');
 %%
 k = 1;
 for i = [1 3 4 5 6 7];
@@ -129,7 +130,7 @@ for i = [1 3 4 5 6 7];
     name = ['case ' , num2str(k)];
     title([name,' with maximum error = ' ,num2str(error), ' mm'])
     set(gcf, 'Position', [0, 0, 5000, 1000])
-    saveas(gcf,[path 'case' num2str(k) 'without_cal'], 'jpeg')
+    saveas(gcf,[path_output 'case' num2str(k) 'without_cal'], 'jpeg')
     
     
 %     figure , grid
@@ -186,7 +187,7 @@ for i = [1 3 4 5 6 7];
     name = ['case ' , num2str(k)];
     title([name,' with maximum error = ' ,num2str(error), ' mm'])
     set(gcf, 'Position', [0, 0, 5000, 1000])
-    saveas(gcf, [path 'case' num2str(k) 'tip_cal'], 'jpeg')
+    saveas(gcf, [path_output 'case' num2str(k) 'tip_cal'], 'jpeg')
     
     
 %     figure , grid
@@ -239,7 +240,7 @@ for i = [1 3 4 5 6 7]
     name = ['case ' , num2str(k)];
     title([name,' with maximum error = ' ,num2str(error), ' mm'])
     set(gcf, 'Position', [0, 0, 5000, 1000])
-    saveas(gcf ,[path 'case' num2str(k) 'full_cal'], 'jpeg')
+    saveas(gcf ,[path_output 'case' num2str(k) 'full_cal'], 'jpeg')
     
     k = k+1;
 end

@@ -3,12 +3,12 @@ clear all
 clc
 
 l = [1,2,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
-%l = [12]
-path_output = '../output/plot/img'
-path = '../output/intermediary_result/chess_point_img'
+path_output = '../output/step2/'
+mkdir(path_output)
+path_input = '../output/step1/chess_point_img'
 
 for ii = 1:size(l,2)
-points = load([path num2str(l(ii), '%02d') '.mat'])
+points = load([path_input num2str(l(ii), '%02d') '.mat'])
 center_in = points.centroids; % name to be changed
 points_in = points.centroids2; % to be changed
 
@@ -147,4 +147,4 @@ points_f{ii} = P_f;
 close all
 end
 
-save('../output/intermediary_result/agg_ordered_points.mat', 'points_f')
+save([path_output 'agg_ordered_points.mat'], 'points_f')

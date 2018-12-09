@@ -2,8 +2,11 @@ clear all
 close all
 clc
 
-file_path = '../data/camera_control/'
-files = dir([file_path '*.tiff']);
+path_input = '../data/camera_control/'
+path_output = '../output/step3/'
+mkdir(path_output)
+
+files = dir([path_input '*.tiff']);
 
 for i=1:length(files)
     
@@ -11,7 +14,7 @@ for i=1:length(files)
     
     disp(['Image ' num2str(i) ' / ' num2str(length(files))])
     
-    I = imread([file_path files(i).name]);
+    I = imread([path_input files(i).name]);
     Ibw2 = rgb2gray(I);
     imshow(Ibw2);
     Ibw = (Ibw2 > 0.4 * max(max(Ibw2)));
@@ -62,9 +65,9 @@ for i=1:length(files)
    set(h,'PaperOrientation','landscape');
    set(h,'Position',[50 50 1200 800]);
 
-   saveas(gcf, ['../output/camera_control/' files(i).name(1:end-5)], 'jpeg')
+   saveas(gcf, [path_output files(i).name(1:end-5)], 'jpeg')
     
 end
 
-save('../output/back_camera_control_point.mat','results');
+save([path_output 'back_camera_control_point.mat'],'results');
 
