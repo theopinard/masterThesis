@@ -1,6 +1,6 @@
 
 /output/*
 
-/data/
-camera_control/*
+/data/camera_control/*
+
 /data/camera_root/*

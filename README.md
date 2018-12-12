@@ -10,7 +10,7 @@ In our experimental set up we have 2 cameras:
 ## Installation 
 
 You need to have matlab to run the program (I developped using matlab 2016).
-The pictures need to be downloaded and paste in the folder data. You can download a zip file here (https://www.dropbox.com/s/r0g8mv4aoy1d8y1/camera.zip?dl=0)
+The pictures need to be downloaded and paste in the folder data. You can download a zip file [here](https://www.dropbox.com/s/r0g8mv4aoy1d8y1/camera.zip?dl=0)
 
 ## Run the program
 
@@ -50,12 +50,12 @@ Before filtering they are ranked based on the corrdinates, not by columns. Moreo
 
 After the filtering, we broke up the points per column and we have the same number of points per column.
 
-![Alt text](/readme_image/step2/1orderingPoints_final.jpg?raw=true "Filtered points")
+![Alt text](/readme_image/step2/ordered_points.jpg?raw=true "Filtered points")
 
 ### 3) Image processing of the picture of the back camera
 
 We need to process the image from the back camera to get the position of the displacement at the edge of the wing.  
-![Alt text](/readme_image/step3/image.jpg?raw=true "Imge with identified edge")
+![Alt text](/readme_image/step3/image_back.jpg?raw=true "Image with identified edge")
 
 ### 4) Point filtering of the back camera
 
@@ -71,9 +71,9 @@ First we used used the result without any calibration.
 Second we use a calibration just with the tip of the wing. 
 Third we use a calibration on the full displacement.
 
-#### No calibration
+#### a. No calibration
 ![Alt text](/readme_image/step5/case1without_cal.jpg?raw=true "No Calibration")
-#### Calibration just with the tip of the wing
+#### b. Calibration just with the tip of the wing
 ![Alt text](/readme_image/step5/case1tip_cal.jpg?raw=true "No Calibration")
-#### calibration with the full wing displacement 
+#### c. calibration with the full wing displacement 
 ![Alt text](/readme_image/step5/case1full_cal.jpg?raw=true "No Calibration")
